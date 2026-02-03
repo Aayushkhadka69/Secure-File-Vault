@@ -838,4 +838,5 @@ class MainApplication:
             self.user_manager.current_user = None
             self.root.destroy()
             from auth.auth_window import AuthWindow
-            AuthWindow()
+            AuthWindow()#   G U I   m o d u l e  
+ 
