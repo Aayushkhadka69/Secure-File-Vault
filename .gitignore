@@ -1,0 +1,89 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Application specific - VERY IMPORTANT!
+secure_vault/
+users.enc
+*.key
+private_key.pem
+public_key.pem
+*.vault
+*.hash
+*.meta.json
+*.sig
+*.log
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Build outputs
+*.exe
+*.zip
+*.tar.gz
+dist/
+build/
+
+# Database
+*.db
+*.sqlite3
+
+# Docker
+.dockerignore
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Logs
+*.log
+logs/
+
+# Personal files
+personal/
+test_files/
