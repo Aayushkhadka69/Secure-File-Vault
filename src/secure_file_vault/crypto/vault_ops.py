@@ -1,4 +1,4 @@
-"""
+﻿"""
 Vault file operations - encryption, decryption, and verification
 """
 
@@ -275,4 +275,3 @@ def verify_signature_standalone(
     except Exception as e:
         return False, None, str(e)
     
-

@@ -1,4 +1,4 @@
-"""
+﻿"""
 User authentication and management module
 Handles user registration, login, and encrypted user database
 """

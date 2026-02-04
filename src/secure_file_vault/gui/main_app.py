@@ -1,4 +1,4 @@
-"""
+﻿"""
 Main GUI application for Secure File Vault
 """
 
@@ -841,10 +841,3 @@ class MainApplication:
             AuthWindow()
             
             
-
-
-
-
-
-
-

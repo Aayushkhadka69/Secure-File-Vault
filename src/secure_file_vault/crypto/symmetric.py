@@ -73,4 +73,3 @@ def decrypt_aes_gcm(key: bytes, nonce: bytes, ciphertext: bytes, tag: bytes,
         cipher.update(associated_data)
     
     return cipher.decrypt_and_verify(ciphertext, tag)
-
