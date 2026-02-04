@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+print("=" * 50)
+print("?? SECURE FILE VAULT")
+print("=" * 50)
+print("\nMilitary-grade file encryption system")
+print("\nTo use the GUI, run:")
+print("  python -m secure_file_vault.gui.main_app")
+print("\nOr use individual modules:")
+print("  from secure_file_vault.crypto.symmetric import generate_key")
+print("  from secure_file_vault.auth.user_manager import UserManager")
+print("=" * 50)
