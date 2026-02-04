@@ -273,4 +273,5 @@ def verify_signature_standalone(
         
         return is_valid, hash_hex, None
     except Exception as e:
-        return False, None, str(e)
+        return False, None, str(e)#   M e m o r y   m a n a g e m e n t :   P r o c e s s   l a r g e   f i l e s   i n   c h u n k s  
+ 
