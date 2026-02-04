@@ -7,8 +7,7 @@ on:
 jobs:
   build-docker:
     runs-on: ubuntu-latest
-    # Skip Docker if no credentials (won't fail)
-    if: github.event_name == "release" && github.event.action == "published" && secrets.DOCKER_USERNAME != "" && secrets.DOCKER_PASSWORD != ""
+    if: github.event_name == ''release'' && github.event.action == ''published'' && secrets.DOCKER_USERNAME != '''' && secrets.DOCKER_PASSWORD != ''''
     
     steps:
     - uses: actions/checkout@v4
@@ -29,13 +28,13 @@ jobs:
           aayushkhadka69/secure-file-vault:${{ github.ref_name }}
     
     - name: Skip Docker notice
-      if: secrets.DOCKER_USERNAME == "" || secrets.DOCKER_PASSWORD == ""
+      if: secrets.DOCKER_USERNAME == '''' || secrets.DOCKER_PASSWORD == ''''
       run: echo "Skipping Docker build - set DOCKER_USERNAME and DOCKER_PASSWORD secrets to enable"
 
   build-executables:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false  # Don't stop other OS if one fails
+      fail-fast: false
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
     
@@ -57,10 +56,8 @@ jobs:
       run: |
         echo "Building for ${{ matrix.os }}"
         
-        # Build with pyinstaller
         pyinstaller --onefile --name="SecureFileVault" main.py
         
-        # Create zip based on OS
         if [ "${{ matrix.os }}" = "windows-latest" ]; then
           cd dist
           powershell "Compress-Archive -Path SecureFileVault.exe -DestinationPath ../SecureFileVault-Windows.zip"
@@ -76,7 +73,7 @@ jobs:
         fi
     
     - name: Upload artifacts
-      uses: actions/upload-artifact@v4  # MUST BE v4 NOT v3
+      uses: actions/upload-artifact@v4
       with:
         name: secure-file-vault-${{ matrix.os }}
         path: SecureFileVault-*.zip
