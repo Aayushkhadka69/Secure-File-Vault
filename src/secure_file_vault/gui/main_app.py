@@ -120,12 +120,12 @@ class MainApplication:
         header_frame = tk.Frame(main_frame, bg=BG_COLOR, relief="ridge", bd=3)
         header_frame.pack(fill="x", pady=(0, 10))
         
-        tk.Label(header_frame, text="â–“"*120, bg=BG_COLOR, fg=ACCENT_COLOR,
+        tk.Label(header_frame, text="▓"*120, bg=BG_COLOR, fg=ACCENT_COLOR,
                 font=("Courier", 1)).pack()
         
         title_font = font.Font(family="Courier", size=16, weight="bold")
         tk.Label(header_frame, 
-                text="â–“â–“â–“ SECURE FILE VAULT v2.0 â–“â–“â–“ MILITARY-GRADE ENCRYPTION â–“â–“â–“",
+                text="▓ SECURE FILE VAULT v2.0 ▓ MILITARY-GRADE ENCRYPTION ▓",
                 bg=BG_COLOR, fg=ACCENT_COLOR, font=title_font).pack(pady=5)
         
         user_info = tk.Label(header_frame, 
@@ -133,7 +133,7 @@ class MainApplication:
                            bg=BG_COLOR, fg=FG_COLOR, font=("Courier", 9))
         user_info.pack(pady=(0, 5))
         
-        tk.Label(header_frame, text="â–“"*120, bg=BG_COLOR, fg=ACCENT_COLOR,
+        tk.Label(header_frame, text="▓"*120, bg=BG_COLOR, fg=ACCENT_COLOR,
                 font=("Courier", 1)).pack()
         
         # Status bar
@@ -199,7 +199,7 @@ class MainApplication:
     def _build_encrypt_tab(self, parent):
         """Build encryption tab"""
         row = 0
-        ttk.Label(parent, text="â–“ ENCRYPTION MODULE â–“", 
+        ttk.Label(parent, text="▓ ENCRYPTION MODULE ▓", 
                  style='Military.TLabel', foreground=ACCENT_COLOR,
                  font=('Courier', 12, 'bold')).grid(row=row, column=0, sticky="w", pady=(0, 20))
         row += 1
@@ -251,7 +251,7 @@ class MainApplication:
     def _build_decrypt_tab(self, parent):
         """Build decryption tab"""
         row = 0
-        ttk.Label(parent, text="â–“ DECRYPTION MODULE â–“", 
+        ttk.Label(parent, text="▓ DECRYPTION MODULE ▓", 
                  style='Military.TLabel', foreground=ACCENT_COLOR,
                  font=('Courier', 12, 'bold')).grid(row=row, column=0, sticky="w", pady=(0, 20))
         row += 1
@@ -298,7 +298,7 @@ class MainApplication:
     def _build_verify_tab(self, parent):
         """Build verification tab"""
         row = 0
-        ttk.Label(parent, text="â–“ SIGNATURE VERIFICATION â–“", 
+        ttk.Label(parent, text="▓ SIGNATURE VERIFICATION ▓", 
                  style='Military.TLabel', foreground=ACCENT_COLOR,
                  font=('Courier', 12, 'bold')).grid(row=row, column=0, sticky="w", pady=(0, 20))
         row += 1
@@ -337,7 +337,7 @@ class MainApplication:
     def _build_key_tab(self, parent):
         """Build key management tab"""
         row = 0
-        ttk.Label(parent, text="â–“ KEY MANAGEMENT â–“", 
+        ttk.Label(parent, text="▓ KEY MANAGEMENT ▓", 
                  style='Military.TLabel', foreground=ACCENT_COLOR,
                  font=('Courier', 12, 'bold')).grid(row=row, column=0, sticky="w", pady=(0, 20))
         row += 1
@@ -392,7 +392,7 @@ class MainApplication:
     def _build_pki_tab(self, parent):
         """Build PKI generation tab"""
         row = 0
-        ttk.Label(parent, text="â–“ PKI GENERATION â–“", 
+        ttk.Label(parent, text="▓ PKI GENERATION ▓", 
                  style='Military.TLabel', foreground=ACCENT_COLOR,
                  font=('Courier', 12, 'bold')).grid(row=row, column=0, sticky="w", pady=(0, 20))
         row += 1
@@ -428,11 +428,11 @@ class MainApplication:
         info_text.pack(fill="x", padx=5, pady=5)
         info_text.insert("1.0", 
             "[PKI SYSTEM ACTIVE]\n"
-            "â€¢ Private key: Used for signing during encryption\n"
-            "â€¢ Public key: Used for verification during decryption\n"
-            "â€¢ 4096-bit RSA recommended for maximum security\n"
-            "â€¢ Never share private keys - store in secure location\n"
-            "â€¢ Signature verification is MANDATORY for all operations"
+            "▓ Private key: Used for signing during encryption\n"
+            "▓ Public key: Used for verification during decryption\n"
+            "▓ 4096-bit RSA recommended for maximum security\n"
+            "▓ Never share private keys - store in secure location\n"
+            "▓ Signature verification is MANDATORY for all operations"
         )
         info_text.config(state="disabled")
 
@@ -734,7 +734,7 @@ class MainApplication:
             error_msg = str(e)
             if "signature verification" in error_msg.lower():
                 self._update_status("[SECURITY] Signature verification FAILED", error=True)
-                messagebox.showerror("Secure File Vault Error",(
+                messagebox.showerror(
                     "Security Alert",
                     "Signature verification FAILED!\n\n"
                     "Decryption blocked for security.\n"
@@ -771,11 +771,11 @@ class MainApplication:
             
             if is_valid:
                 self._update_status("[SECURITY] Signature VERIFIED")
-                self.verify_result.insert("1.0", "[âœ“ SIGNATURE VALID]\nFile is authentic and untampered")
+                self.verify_result.insert("1.0", "[? SIGNATURE VALID]\nFile is authentic and untampered")
                 self.verify_result.config(bg=HIGHLIGHT_COLOR, fg=SUCCESS_COLOR)
             else:
                 self._update_status("[SECURITY] Signature INVALID", error=True)
-                self.verify_result.insert("1.0", "[âœ— SIGNATURE INVALID]\nFile may be tampered or wrong key used")
+                self.verify_result.insert("1.0", "[? SIGNATURE INVALID]\nFile may be tampered or wrong key used")
                 self.verify_result.config(bg=HIGHLIGHT_COLOR, fg=ERROR_COLOR)
             
             self.verify_result.config(state="disabled")
@@ -841,6 +841,10 @@ class MainApplication:
             AuthWindow()# GUI module
 
 # Military-themed UI colors
+
+
+
+
 
 
 

@@ -174,3 +174,4 @@ class AuthWindow:
         """Grant access to main application"""
         self.root.destroy()
         app = MainApplication(self.user_manager)
+
