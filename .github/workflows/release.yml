@@ -1,4 +1,4 @@
-name: Release Pipeline
+﻿name: Release Pipeline
 
 on:
   release:
@@ -6,17 +6,32 @@ on:
 
 jobs:
   build-docker:
+    # Only build if Dockerfile exists
+    if: github.event_name == 'release' && github.event.action == 'published'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     
+    - name: Check for Dockerfile
+      id: check_docker
+      run: |
+        if [ -f "Dockerfile" ]; then
+          echo "Dockerfile exists"
+          echo "has_docker=true" >> $GITHUB_OUTPUT
+        else
+          echo "No Dockerfile found, skipping Docker build"
+          echo "has_docker=false" >> $GITHUB_OUTPUT
+        fi
+    
     - name: Log in to Docker Hub
+      if: steps.check_docker.outputs.has_docker == 'true'
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     
     - name: Build and push Docker image
+      if: steps.check_docker.outputs.has_docker == 'true'
       uses: docker/build-push-action@v4
       with:
         context: .
@@ -24,8 +39,10 @@ jobs:
         tags: |
           aayushkhadka69/secure-file-vault:latest
           aayushkhadka69/secure-file-vault:${{ github.ref_name }}
-    
+  
   build-executables:
+    # Only build executables if main.py exists
+    if: github.event_name == 'release' && github.event.action == 'published'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -34,28 +51,52 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
+    - name: Check for main.py
+      id: check_main
+      run: |
+        if [ -f "main.py" ]; then
+          echo "main.py exists"
+          echo "has_main=true" >> $GITHUB_OUTPUT
+        else
+          echo "No main.py found, skipping executable build"
+          echo "has_main=false" >> $GITHUB_OUTPUT
+        fi
+    
     - name: Set up Python
+      if: steps.check_main.outputs.has_main == 'true'
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
     
     - name: Install dependencies
+      if: steps.check_main.outputs.has_main == 'true'
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pyinstaller
     
     - name: Build executable
+      if: steps.check_main.outputs.has_main == 'true'
       run: |
+        echo "Building executable for ${{ matrix.os }}"
+        
+        # For Windows
         if [ "${{ matrix.os }}" = "windows-latest" ]; then
-          pyinstaller --onefile --name="SecureFileVault.exe" main.py
-          Compress-Archive -Path dist/SecureFileVault.exe -DestinationPath SecureFileVault-Windows.zip
+          pyinstaller --onefile --name="SecureFileVault" main.py
+          cd dist
+          7z a ../SecureFileVault-Windows.zip SecureFileVault.exe
+          cd ..
+        
+        # For Linux/Mac
         else
           pyinstaller --onefile --name="SecureFileVault" main.py
-          zip -j SecureFileVault-${{ matrix.os }}.zip dist/SecureFileVault
+          cd dist
+          zip ../SecureFileVault-${{ matrix.os }}.zip SecureFileVault
+          cd ..
         fi
     
     - name: Upload artifact
+      if: steps.check_main.outputs.has_main == 'true'
       uses: actions/upload-artifact@v3
       with:
         name: secure-file-vault-${{ matrix.os }}
