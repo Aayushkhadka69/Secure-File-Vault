@@ -79,7 +79,7 @@ class UserManager:
         users = self.load_users()
         
         if username not in users:
-            return False, "Invalid credentials"
+            return False, "Authentication failed: Invalid username or password"
         
         user_data = users[username]
         stored_hash = bytes.fromhex(user_data['password_hash'])
@@ -94,7 +94,7 @@ class UserManager:
             self.current_user = username
             return True, "Authentication successful"
         
-        return False, "Invalid credentials"
+        return False, "Authentication failed: Invalid username or password"
     
     def load_users(self):
         """Load encrypted user database from file"""
