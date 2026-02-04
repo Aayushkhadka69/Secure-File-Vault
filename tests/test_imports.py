@@ -1,11 +1,13 @@
-#!/usr/bin/env python3
-"""Test that all modules can be imported"""
+﻿#!/usr/bin/env python3
+"""
+Test imports for Secure File Vault
+"""
 
-import sys
 import os
+import sys
 
-# Add src to Python path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+# Add the parent directory to sys.path to allow imports
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 def test_auth_import():
     """Test authentication module imports"""
@@ -37,19 +39,54 @@ def test_main_exists():
         print(f"✗ Main import error: {e}")
         return False
 
-if __name__ == "__main__":
+def run_all_tests():
+    """Run all import tests"""
+    print("=" * 50)
     print("Running import tests...")
-    print("-" * 40)
+    print("=" * 50)
     
     results = []
-    results.append(test_auth_import())
-    results.append(test_crypto_import())
-    results.append(test_main_exists())
     
-    print("-" * 40)
-    if all(results):
-        print("✅ All import tests passed!")
-    else:
-        print("❌ Some import tests failed")
-        sys.exit(1)
-        
+    results.append(("Authentication", test_auth_import()))
+    results.append(("Crypto", test_crypto_import()))
+    results.append(("Main", test_main_exists()))
+    
+    print("\n" + "=" * 50)
+    print("Test Results Summary:")
+    print("=" * 50)
+    
+    passed = 0
+    for name, result in results:
+        status = "PASSED" if result else "FAILED"
+        if result:
+            passed += 1
+        print(f"{name:20} {status}")
+    
+    print(f"\nTotal: {passed}/{len(results)} tests passed")
+    
+    return all(result for _, result in results)
+
+if __name__ == "__main__":
+    success = run_all_tests()
+    sys.exit(0 if success else 1)
+
+
+def test_gui_import():
+    """Test GUI module imports"""
+    try:
+        from secure_file_vault.gui import main_window
+        print("✓ GUI module imports work")
+        return True
+    except ImportError as e:
+        print(f"✗ GUI import error: {e}")
+        return False
+
+def test_utils_import():
+    """Test utilities module imports"""
+    try:
+        from secure_file_vault.utils import file_utils, config
+        print("✓ Utils module imports work")
+        return True
+    except ImportError as e:
+        print(f"✗ Utils import error: {e}")
+        return False
