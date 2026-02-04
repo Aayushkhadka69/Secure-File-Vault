@@ -44,16 +44,16 @@ def load_rsa_key(path: str, private: bool = True) -> RSA.RsaKey:
         RSA.RsaKey: Loaded key
     
     Raises:
-        ValueError: If key type doesn't match expectation
+        ValueError("PKI Error:"): If key type doesn't match expectation
     """
     with open(path, "rb") as f:
         key = RSA.import_key(f.read())
     
     if private and not key.has_private():
-        raise ValueError("Expected an RSA PRIVATE key file (.pem) here.")
+        raise ValueError("PKI Error:")("Expected an RSA PRIVATE key file (.pem) here.")
     
     if not private and key.has_private():
-        raise ValueError("Expected an RSA PUBLIC key file (.pem) here, not a private key.")
+        raise ValueError("PKI Error:")("Expected an RSA PUBLIC key file (.pem) here, not a private key.")
     
     return key
 
@@ -87,5 +87,5 @@ def verify_hash_with_rsa(hash_bytes: bytes, pub_key: RSA.RsaKey, sig: bytes) -> 
     try:
         pkcs1_15.new(pub_key).verify(h, sig)
         return True
-    except (ValueError, TypeError):
+    except (ValueError("PKI Error:"), TypeError):
         return False
