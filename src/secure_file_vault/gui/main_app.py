@@ -1,4 +1,4 @@
-﻿"""
+"""
 Main GUI application for Secure File Vault
 """
 
@@ -125,7 +125,7 @@ class MainApplication:
         
         title_font = font.Font(family="Courier", size=16, weight="bold")
         tk.Label(header_frame, 
-                text="▓ SECURE FILE VAULT v2.0 ▓ MILITARY-GRADE ENCRYPTION ▓",
+                text="▓▓▓ SECURE FILE VAULT v2.0 ▓▓▓ MILITARY-GRADE ENCRYPTION ▓▓▓",
                 bg=BG_COLOR, fg=ACCENT_COLOR, font=title_font).pack(pady=5)
         
         user_info = tk.Label(header_frame, 
@@ -428,11 +428,11 @@ class MainApplication:
         info_text.pack(fill="x", padx=5, pady=5)
         info_text.insert("1.0", 
             "[PKI SYSTEM ACTIVE]\n"
-            "▓ Private key: Used for signing during encryption\n"
-            "▓ Public key: Used for verification during decryption\n"
-            "▓ 4096-bit RSA recommended for maximum security\n"
-            "▓ Never share private keys - store in secure location\n"
-            "▓ Signature verification is MANDATORY for all operations"
+            "• Private key: Used for signing during encryption\n"
+            "• Public key: Used for verification during decryption\n"
+            "• 4096-bit RSA recommended for maximum security\n"
+            "• Never share private keys - store in secure location\n"
+            "• Signature verification is MANDATORY for all operations"
         )
         info_text.config(state="disabled")
 
@@ -771,11 +771,11 @@ class MainApplication:
             
             if is_valid:
                 self._update_status("[SECURITY] Signature VERIFIED")
-                self.verify_result.insert("1.0", "[? SIGNATURE VALID]\nFile is authentic and untampered")
+                self.verify_result.insert("1.0", "[✓ SIGNATURE VALID]\nFile is authentic and untampered")
                 self.verify_result.config(bg=HIGHLIGHT_COLOR, fg=SUCCESS_COLOR)
             else:
                 self._update_status("[SECURITY] Signature INVALID", error=True)
-                self.verify_result.insert("1.0", "[? SIGNATURE INVALID]\nFile may be tampered or wrong key used")
+                self.verify_result.insert("1.0", "[✗ SIGNATURE INVALID]\nFile may be tampered or wrong key used")
                 self.verify_result.config(bg=HIGHLIGHT_COLOR, fg=ERROR_COLOR)
             
             self.verify_result.config(state="disabled")
@@ -838,9 +838,9 @@ class MainApplication:
             self.user_manager.current_user = None
             self.root.destroy()
             from auth.auth_window import AuthWindow
-            AuthWindow()# GUI module
-
-# Military-themed UI colors
+            AuthWindow()
+            
+            
 
 
 
