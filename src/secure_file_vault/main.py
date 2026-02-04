@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Secure File Vault - Main Entry Point
 Military-grade encryption system with user authentication and PKI

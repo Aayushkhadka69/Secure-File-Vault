@@ -1,4 +1,4 @@
-"""
+﻿"""
 Authentication window for user login and registration
 """
 
@@ -58,13 +58,13 @@ class AuthWindow:
         
         # Title section
         title_font = font.Font(family="Courier", size=18, weight="bold")
-        tk.Label(main_frame, text="╔══════════════════════════════════════╗", 
+        tk.Label(main_frame, text="â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—", 
                 bg=BG_COLOR, fg=ACCENT_COLOR, font=("Courier", 10)).pack()
-        tk.Label(main_frame, text="║       SECURE FILE VAULT v2.0         ║", 
+        tk.Label(main_frame, text="â•‘       SECURE FILE VAULT v2.0         â•‘", 
                 bg=BG_COLOR, fg=ACCENT_COLOR, font=title_font).pack()
-        tk.Label(main_frame, text="║      MILITARY-GRADE SECURITY         ║", 
+        tk.Label(main_frame, text="â•‘      MILITARY-GRADE SECURITY         â•‘", 
                 bg=BG_COLOR, fg=ERROR_COLOR, font=("Courier", 10, "bold")).pack()
-        tk.Label(main_frame, text="╚══════════════════════════════════════╝", 
+        tk.Label(main_frame, text="â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•", 
                 bg=BG_COLOR, fg=ACCENT_COLOR, font=("Courier", 10)).pack(pady=(0, 30))
         
         # Instructions
@@ -93,7 +93,7 @@ class AuthWindow:
                 font=("Courier", 11, "bold")).grid(row=2, column=0, sticky="w", pady=(0, 5))
         self.password_entry = tk.Entry(login_frame, bg=HIGHLIGHT_COLOR, fg=ACCENT_COLOR,
                                       insertbackground=ACCENT_COLOR, font=("Courier", 11),
-                                      width=30, relief="sunken", bd=2, show="•")
+                                      width=30, relief="sunken", bd=2, show="â€¢")
         self.password_entry.grid(row=3, column=0, pady=(0, 20), padx=10)
         
         # Requirements
