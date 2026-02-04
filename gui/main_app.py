@@ -839,4 +839,5 @@ class MainApplication:
             self.root.destroy()
             from auth.auth_window import AuthWindow
             AuthWindow()#   G U I   m o d u l e  
+ #   M i l i t a r y - t h e m e d   U I   c o l o r s  
  
