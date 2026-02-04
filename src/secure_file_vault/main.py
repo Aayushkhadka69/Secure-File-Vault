@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Secure File Vault - Main Entry Point
 Military-grade encryption system with user authentication and PKI
@@ -29,4 +29,3 @@ def main():
 if __name__ == "__main__":
     main()
     
-
