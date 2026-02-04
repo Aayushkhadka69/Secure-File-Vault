@@ -734,7 +734,7 @@ class MainApplication:
             error_msg = str(e)
             if "signature verification" in error_msg.lower():
                 self._update_status("[SECURITY] Signature verification FAILED", error=True)
-                messagebox.showerror(
+                messagebox.showerror("Secure File Vault Error",(
                     "Security Alert",
                     "Signature verification FAILED!\n\n"
                     "Decryption blocked for security.\n"
@@ -838,6 +838,8 @@ class MainApplication:
             self.user_manager.current_user = None
             self.root.destroy()
             from auth.auth_window import AuthWindow
-            AuthWindow()#   G U I   m o d u l e  
- #   M i l i t a r y - t h e m e d   U I   c o l o r s  
+            AuthWindow()#   G U I   m o d u l e 
+ 
+ #   M i l i t a r y - t h e m e d   U I   c o l o r s 
+ 
  
